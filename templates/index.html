@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Collection Dashboard</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body>
+    <h1>🥛 Milk Processing Collection</h1>
+    
+    <section>
+        <h2>Log Daily Entry</h2>
+        <form action="/add-collection" method="POST">
+            <label for="farmer_id">Select Farmer:</label>
+            <select name="farmer_id" id="farmer_id" required>
+                {% for farmer in farmers %}
+                    <option value="{{ farmer.id }}">{{ farmer.name }} ({{ farmer.farmer_code }})</option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">Quantity (Liters):</label>
+            <input type="number" step="0.01" name="quantity" id="quantity" required>
+
+            <label for="fat">Fat %:</label>
+            <input type="number" step="0.01" name="fat" id="fat" required>
+
+            <label for="snf">SNF % (Solids-Not-Fat):</label>
+            <input type="number" step="0.01" name="snf" id="snf" required>
+
+            <label for="price">Price per Liter ($):</label>
+            <input type="number" step="0.01" name="price" id="price" required>
+
+            <button type="submit">Submit Entry</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Recent Collections</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date/Time</th>
+                    <th>Farmer</th>
+                    <th>Liters</th>
+                    <th>Fat %</th>
+                    <th>SNF %</th>
+                    <th>Total Payout</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.collected_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ log.farmer_name }}</td>
+                    <td>{{ log.quantity_liters }} L</td>
+                    <td>{{ log.fat_percentage }}%</td>
+                    <td>{{ log.snf_percentage }}%</td>
+                    <td><strong>${{ "%.2f"|format(log.total_amount) }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Collection Dashboard</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+</head>
+<body>
+    <h1>🥛 Milk Processing Collection</h1>
+    
+    <section>
+        <h2>Log Daily Entry</h2>
+        <form action="/add-collection" method="POST">
+            <label for="farmer_id">Select Farmer:</label>
+            <select name="farmer_id" id="farmer_id" required>
+                {% for farmer in farmers %}
+                    <option value="{{ farmer.id }}">{{ farmer.name }} ({{ farmer.farmer_code }})</option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">Quantity (Liters):</label>
+            <input type="number" step="0.01" name="quantity" id="quantity" required>
+
+            <label for="fat">Fat %:</label>
+            <input type="number" step="0.01" name="fat" id="fat" required>
+
+            <label for="snf">SNF % (Solids-Not-Fat):</label>
+            <input type="number" step="0.01" name="snf" id="snf" required>
+
+            <label for="price">Price per Liter ($):</label>
+            <input type="number" step="0.01" name="price" id="price" required>
+
+            <button type="submit">Submit Entry</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Recent Collections</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date/Time</th>
+                    <th>Farmer</th>
+                    <th>Liters</th>
+                    <th>Fat %</th>
+                    <th>SNF %</th>
+                    <th>Total Payout</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.collected_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ log.farmer_name }}</td>
+                    <td>{{ log.quantity_liters }} L</td>
+                    <td>{{ log.fat_percentage }}%</td>
+                    <td>{{ log.snf_percentage }}%</td>
+                    <td><strong>${{ "%.2f"|format(log.total_amount) }}</strong></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
