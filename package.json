@@ -1,0 +1,12 @@
+{
+  "name": "milk-collection-app",
+  "version": "1.0.0",
+  "description": "Kondiki SACCOS Milk Collection",
+  "main": "sw.js",
+  "scripts": {
+    "start": "node sw.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
